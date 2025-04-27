@@ -13,11 +13,14 @@ class Entrenador(
     fechaIncorporacion: LocalDate,
     salario: Double,
     pais: String,
-    var especialedad: Especialidad?
+    val especialidad: Especialidad?
 ): Personas(id, nombre, apellido, fechaNacimiento, fechaIncorporacion, salario, pais) {
     @Serializable
     enum class Especialidad {
         @SerialName("especialidad")
         ENTRENADOR_ASISTENTE, ENTRENADOR_PORTEROS, ENTRENADOR_PRINCIPAL
+    }
+    override fun toString(): String {
+        return "Entrenador(id=$id, nombre='$nombre', apellido='$apellido', fechaNacimiento=$fechaNacimiento, fechaIncorporacion=$fechaIncorporacion, salario=$salario, paisOrigen='$pais', especialedad=$especialidad)"
     }
 }
