@@ -7,7 +7,7 @@ plugins {
   id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'dev.alejandrozaragoza'
+group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -24,11 +24,11 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-  mainModule = 'dev.alejandrozaragoza.proyectofinal'
-  mainClass = 'dev.alejandrozaragoza.proyectofinal.HelloApplication'
+  mainModule = 'org.example.proyectojugadores'
+  mainClass = 'org.example.proyectojugadores.HelloApplication'
 }
 kotlin {
-  jvmToolchain( 17 )
+  jvmToolchain(21)
 }
 
 javafx {
@@ -37,13 +37,41 @@ javafx {
 }
 
 dependencies {
+// Logger
+  implementation("org.lighthousegames:logging:1.3.0")
+  implementation("ch.qos.logback:logback-classic:1.4.14")
+
+  // Base de datos a usar, driver
+  implementation("com.h2database:h2:2.3.232") // H2
+
+  // JDBI
+  implementation("org.jetbrains.kotlin:kotlin-reflect") // Necesario para JDBI la reflexión
+  implementation("org.jdbi:jdbi3-core:3.48.0") // Core
+  implementation("org.jdbi:jdbi3-sqlobject:3.48.0") // SQL Object para DAO
+  implementation("org.jdbi:jdbi3-kotlin:3.48.0") // Kotlin extension
+  implementation("org.jdbi:jdbi3-kotlin-sqlobject:3.48.0") // Kotlin extension para SQL Object
+
+  // Kotlin Serialization
+  implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
+
+  // Result
+  implementation("com.michael-bull.kotlin-result:kotlin-result:2.0.0")
+
+  // Cache Caffeine
+  implementation("com.github.ben-manes.caffeine:caffeine:3.2.0")
+
+  // Libreria serializacion xml
+  implementation("io.github.pdvrieze.xmlutil:serialization-jvm:0.90.3")
+
+
 
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 test {
-useJUnitPlatform()}
+  useJUnitPlatform()
+}
 
 jlink {
   imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
@@ -55,4 +83,15 @@ jlink {
 
 jlinkZip {
   group = 'distribution'
+}
+
+// Jar ejecutable
+jar {
+  manifest {
+    attributes 'Main-Class': 'dev.joseluisgs.pokedexfx.ExpedientesApplication'
+  }
+  from {
+    configurations["compileClasspath"].collect { it.isDirectory() ? it : zipTree(it) }
+  }
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
