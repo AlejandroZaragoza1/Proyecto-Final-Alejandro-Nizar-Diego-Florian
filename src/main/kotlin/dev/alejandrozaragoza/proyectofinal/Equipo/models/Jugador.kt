@@ -7,7 +7,7 @@ import java.time.LocalDate
 @Serializable
 class Jugador(
     id: Long,
-    nambre: String,
+    nombre: String,
     apellido: String,
     fechaNacimiento: LocalDate,
     fechaIncorporacion: LocalDate,
@@ -20,7 +20,7 @@ class Jugador(
     var goles: Int?,
     var partidos: Int?,
     var minutosJugados: Double?
-): Personas(id, nambre, apellido, fechaNacimiento, fechaIncorporacion, salario, pais) {
+): Personas(id, nombre, apellido, fechaNacimiento, fechaIncorporacion, salario, pais) {
     @Serializable
     enum class Posicion {
         @SerialName("posicion")

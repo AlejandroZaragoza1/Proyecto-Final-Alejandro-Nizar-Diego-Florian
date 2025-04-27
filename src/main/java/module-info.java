@@ -1,7 +1,8 @@
 module dev.alejandrozaragoza.proyectofinal {
     requires javafx.controls;
     requires javafx.fxml;
-    requires kotlin.stdlib;
+    requires kotlinx.serialization.core;
+    requires net.devrieze.xmlutil.serialization;
 
 
     opens dev.alejandrozaragoza.proyectofinal to javafx.fxml;
