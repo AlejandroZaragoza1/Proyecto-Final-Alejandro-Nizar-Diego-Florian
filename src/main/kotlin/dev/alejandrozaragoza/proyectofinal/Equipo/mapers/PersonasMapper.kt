@@ -18,6 +18,8 @@ fun Entrenador.toCsvDto(): PersonasCsvDto {
         salario = this.salario,
         pais = this.pais,
         especialidad = this.especialidad.toString(),
+        rol = "Entrenador"
+
 
     )
 }
@@ -36,7 +38,8 @@ fun Jugador.toCsvDto(): PersonasCsvDto {
         peso = this.peso,
         goles = this.goles,
         partidos = this.partidos,
-        minutosJugados = this.minutosJugados
+        minutosJugados = this.minutosJugados,
+        rol = "Jugador"
     )
 }
 fun Entrenador.toJsonDto(): PersonasJsonDto {
