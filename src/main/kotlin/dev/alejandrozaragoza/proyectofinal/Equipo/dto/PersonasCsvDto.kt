@@ -27,6 +27,9 @@ data class PersonasCsvDto(
     @SerialName("pais")
     val pais: String,
 
+    @SerialName("rol")
+    val rol: String,
+
     @SerialName("posicion")
     val posicion: String? = null, // Solo si es Jugador, nullable
 

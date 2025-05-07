@@ -36,6 +36,10 @@ data class PersonasXmlDto(
     @XmlElement(true)
     val pais: String,
 
+    @SerialName("tipo")
+    @XmlElement(true)
+    val tipo: String,
+
     @SerialName("posicion")
     @XmlElement(true)
     val posicion: String = "",
