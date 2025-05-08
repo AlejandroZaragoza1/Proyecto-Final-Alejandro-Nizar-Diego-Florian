@@ -5,6 +5,8 @@ module dev.alejandrozaragoza.proyectofinal {
     requires kotlin.result.jvm;
     requires logging.jvm;
     requires kotlinx.serialization.json;
+    requires java.sql;
+    requires org.mybatis;
 
 
     opens dev.alejandrozaragoza.proyectofinal to javafx.fxml;
