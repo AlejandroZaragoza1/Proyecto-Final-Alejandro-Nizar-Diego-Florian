@@ -7,6 +7,7 @@ module dev.alejandrozaragoza.proyectofinal {
     requires kotlinx.serialization.json;
     requires java.sql;
     requires org.mybatis;
+    requires org.jdbi.v3.sqlobject;
 
 
     opens dev.alejandrozaragoza.proyectofinal to javafx.fxml;

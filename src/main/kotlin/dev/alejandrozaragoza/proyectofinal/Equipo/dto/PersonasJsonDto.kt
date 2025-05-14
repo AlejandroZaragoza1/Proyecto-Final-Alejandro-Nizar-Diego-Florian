@@ -26,6 +26,12 @@ data class PersonasJsonDto (
     @SerialName("pais")
     val pais: String,
 
+    @SerialName("createAt")
+    val createAt: String,
+
+    @SerialName("updatedAt")
+    val updatedAt: String,
+
     @SerialName("rol")
     val rol: String,
 

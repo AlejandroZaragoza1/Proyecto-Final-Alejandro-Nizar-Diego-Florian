@@ -38,7 +38,7 @@ data class PersonasXmlDto(
 
     @SerialName("tipo")
     @XmlElement(true)
-    val tipo: String,
+    val rol: String,
 
     @SerialName("posicion")
     @XmlElement(true)

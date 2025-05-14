@@ -35,7 +35,6 @@ class PersonasStorageJson: PersonasStorage {
             }
         }
     }
-
     override fun writeToFile(file: File, format: FileFormat, personasList: List<Personas>) {
         logger.debug { "Escribiendo personas en fichero JSON" }
 
@@ -55,5 +54,4 @@ class PersonasStorageJson: PersonasStorage {
         val jsonToString: String = Json.encodeToString(personasLista)
         file.writeText(jsonToString)
     }
-
 }

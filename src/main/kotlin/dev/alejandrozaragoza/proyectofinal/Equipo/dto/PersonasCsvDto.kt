@@ -30,6 +30,12 @@ data class PersonasCsvDto(
     @SerialName("rol")
     val rol: String,
 
+    @SerialName("createAt")
+    val createAt: String,
+
+    @SerialName("updatedAt")
+    val updatedAt: String,
+
     @SerialName("posicion")
     val posicion: String? = null, // Solo si es Jugador, nullable
 
