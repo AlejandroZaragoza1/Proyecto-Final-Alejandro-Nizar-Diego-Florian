@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.time.LocalDate
 
-@Serializable
+
 class Entrenador(
     id: Long,
     nombre: String,
