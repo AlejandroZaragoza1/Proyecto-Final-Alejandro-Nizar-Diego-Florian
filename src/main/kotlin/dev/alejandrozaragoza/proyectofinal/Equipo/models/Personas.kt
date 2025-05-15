@@ -1,6 +1,6 @@
 package org.example.proyectojugadores.Equipo.models
 
-import kotlinx.serialization.Serializable
+import dev.alejandrozaragoza.proyectofinal.Equipo.dao.PersonasEntity
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -16,7 +16,11 @@ open class Personas(
     val createdAt: LocalDateTime = LocalDateTime.now(),
     val updatedAt: LocalDateTime = LocalDateTime.now()
 ) {
+
     companion object{
         val NEW_ID = 1L
     }
+    val isNewPersona: Boolean
+        get() = id == NEW_ID
+
 }

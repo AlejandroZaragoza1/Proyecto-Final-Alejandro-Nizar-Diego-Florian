@@ -11,7 +11,10 @@ interface PersonasDao {
     fun getAll(): List<PersonasEntity>
 
     @SqlQuery("SELECT * FROM persona WHERE id = :id")
-    fun getById(@Bind("id") id: Int): PersonasEntity?
+    fun getById(@Bind("id") id: Long): PersonasEntity?
+
+    @SqlUpdate("DELETE FROM alumnos")
+    fun deleteAll()
 
     @SqlUpdate("""
     INSERT INTO Personas (
@@ -24,6 +27,13 @@ interface PersonasDao {
 """)
     @GetGeneratedKeys("id")
     fun save(@BindBean persona: PersonasEntity): Int
+
+    @GetGeneratedKeys("id")
+    fun insert(@Bind persona: PersonasEntity): Int
+
+    @GetGeneratedKeys("id")
+    fun delete(@Bind("id") id: Long): Int
+
 
     @SqlUpdate("""
     UPDATE Personas SET 

@@ -1,5 +1,7 @@
 package dev.alejandrozaragoza.proyectofinal.Equipo.mapers
 
+import dev.alejandrozaragoza.proyectofinal.Equipo.dao.PersonasEntity
+import dev.alejandrozaragoza.proyectofinal.Equipo.dto.PersonasDto
 import org.example.proyectojugadores.Equipo.dto.PersonasBinDto
 import org.example.proyectojugadores.Equipo.dto.PersonasCsvDto
 import org.example.proyectojugadores.Equipo.dto.PersonasJsonDto
@@ -7,7 +9,7 @@ import org.example.proyectojugadores.Equipo.dto.PersonasXmlDto
 import org.example.proyectojugadores.Equipo.models.Entrenador
 import org.example.proyectojugadores.Equipo.models.Jugador
 import java.time.LocalDate
-import java.time.LocalDateTime
+import org.example.proyectojugadores.Equipo.models.Personas as Personas
 
 fun Entrenador.toCsvDto(): PersonasCsvDto {
     return PersonasCsvDto(
@@ -340,12 +342,20 @@ fun PersonasBinDto.toJugador(): Jugador {
     )
 }
 
-
-
-
-
-
-
-
-
-
+fun PersonasEntity.toModel(): Personas{
+    return Personas(
+        id,
+        nombre,
+        apellido,
+        fechaNacimiento,
+        fechaIncorporacion,
+        salario,
+        pais,
+        createdAt,
+        updatedAt
+    )
+}
+@JvmName("entityToModelList")
+fun List<PersonasEntity>.toModel(): List<Personas> {
+    return this.map { it.toModel() }
+}
