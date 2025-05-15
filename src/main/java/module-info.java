@@ -8,6 +8,7 @@ module dev.alejandrozaragoza.proyectofinal {
     requires java.sql;
     requires org.mybatis;
     requires org.jdbi.v3.sqlobject;
+    requires com.github.benmanes.caffeine;
 
 
     opens dev.alejandrozaragoza.proyectofinal to javafx.fxml;

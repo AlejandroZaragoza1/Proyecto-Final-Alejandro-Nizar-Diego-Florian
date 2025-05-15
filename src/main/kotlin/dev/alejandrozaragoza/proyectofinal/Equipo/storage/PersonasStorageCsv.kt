@@ -49,6 +49,7 @@ class PersonasStorageCsv: PersonasStorage {
                     partidos = it[13].toIntOrNull(),
                     minutosJugados = it[14].toDoubleOrNull(),
                     especialidad = it[15],
+
                 )
                 when (dto.rol) {
                     "Entrenador" -> dto.toEntrenador()
