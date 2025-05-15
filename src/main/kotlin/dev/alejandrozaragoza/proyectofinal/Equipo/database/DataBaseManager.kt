@@ -1,7 +1,7 @@
 package dev.alejandrozaragoza.proyectofinal.Equipo.database
 
 
-import dev.alejandrozaragoza.proyectofinal.Equipo.config.Config
+import dev.alejandrozaragoza.proyectofinal.Equipo.config.appConfig
 import org.apache.ibatis.jdbc.ScriptRunner
 import org.lighthousegames.logging.logging
 import java.io.PrintWriter
@@ -21,10 +21,10 @@ object DataBaseManager: AutoCloseable {
 
     private fun initDatabase() {
         initConexion()
-        if (Config.databaseInitTables) {
+        if (appConfig.databaseInitTables) {
             initTables()
         }
-        if (Config.databaseInitData){
+        if (appConfig.databaseInitData){
             initData()
         }
         close()
@@ -60,10 +60,10 @@ object DataBaseManager: AutoCloseable {
     }
 
     private fun initConexion() {
-        logger.debug { "Iniciando conexión con la base de datos en ${Config.databaseUrl}" }
+        logger.debug { "Iniciando conexión con la base de datos en ${appConfig.databaseUrl}" }
         logger.debug { "Iniciando conexión con la base de datos" }
         if (connection == null || connection!!.isClosed) {
-            connection = DriverManager.getConnection(Config.databaseUrl)
+            connection = DriverManager.getConnection(appConfig.databaseUrl)
         }
         logger.debug { "Conexión con la base de datos inicializada" }
     }
