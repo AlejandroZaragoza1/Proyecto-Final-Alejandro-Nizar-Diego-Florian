@@ -1,5 +1,7 @@
 package dev.alejandrozaragoza.proyectofinal.Equipo.mapers
 
+import dev.alejandrozaragoza.proyectofinal.Equipo.dao.PersonasEntity
+import dev.alejandrozaragoza.proyectofinal.Equipo.dto.PersonasDto
 import org.example.proyectojugadores.Equipo.dto.PersonasBinDto
 import org.example.proyectojugadores.Equipo.dto.PersonasCsvDto
 import org.example.proyectojugadores.Equipo.dto.PersonasJsonDto
@@ -7,6 +9,7 @@ import org.example.proyectojugadores.Equipo.dto.PersonasXmlDto
 import org.example.proyectojugadores.Equipo.models.Entrenador
 import org.example.proyectojugadores.Equipo.models.Jugador
 import java.time.LocalDate
+import org.example.proyectojugadores.Equipo.models.Personas as Personas
 
 fun Entrenador.toCsvDto(): PersonasCsvDto {
     return PersonasCsvDto(
@@ -18,9 +21,9 @@ fun Entrenador.toCsvDto(): PersonasCsvDto {
         salario = this.salario,
         pais = this.pais,
         especialidad = this.especialidad.toString(),
-        rol = "Entrenador"
-
-
+        rol = "Entrenador",
+        createAt = this.createdAt.toString(),
+        updatedAt = this.updatedAt.toString(),
     )
 }
 fun Jugador.toCsvDto(): PersonasCsvDto {
@@ -39,7 +42,9 @@ fun Jugador.toCsvDto(): PersonasCsvDto {
         goles = this.goles,
         partidos = this.partidos,
         minutosJugados = this.minutosJugados,
-        rol = "Jugador"
+        rol = "Jugador",
+        createAt = this.createdAt.toString(),
+        updatedAt = this.updatedAt.toString(),
     )
 }
 fun Entrenador.toJsonDto(): PersonasJsonDto {
@@ -52,7 +57,9 @@ fun Entrenador.toJsonDto(): PersonasJsonDto {
         salario = this.salario,
         pais = this.pais,
         especialidad = this.especialidad.toString(),
-        rol = "Entrenador"
+        rol = "Entrenador",
+        createAt = this.createdAt.toString(),
+        updatedAt = this.updatedAt.toString(),
     )
 }
 fun Jugador.toJsonDto(): PersonasJsonDto {
@@ -71,7 +78,9 @@ fun Jugador.toJsonDto(): PersonasJsonDto {
         goles = this.goles,
         partidos = this.partidos,
         minutosJugados = this.minutosJugados,
-        rol = "Jugador"
+        rol = "Jugador",
+        createAt = this.createdAt.toString(),
+        updatedAt = this.updatedAt.toString(),
     )
 }
 fun PersonasJsonDto.toEntrenador(): Entrenador {
@@ -126,6 +135,7 @@ fun Entrenador.toXmlDto(): PersonasXmlDto {
         salario = this.salario,
         pais = this.pais,
         especialidad = this.especialidad.toString(),
+        rol = "Entrenador"
     )
 }
 fun Jugador.toXmlDto(): PersonasXmlDto {
@@ -143,7 +153,8 @@ fun Jugador.toXmlDto(): PersonasXmlDto {
         peso = this.peso.toString(),
         goles = this.goles.toString(),
         partidos = this.partidos.toString(),
-        minutosJugados = this.minutosJugados.toString()
+        minutosJugados = this.minutosJugados.toString(),
+        rol = "Jugador"
         )
 }
 fun PersonasCsvDto.toEntrenador(): Entrenador {
@@ -256,7 +267,8 @@ fun Entrenador.toBinDto(): PersonasBinDto {
         salario = this.salario,
         pais = this.pais,
         posicion = "", // Entrenador no tiene posicion
-        especialidad = this.especialidad?.toString()
+        especialidad = this.especialidad?.toString(),
+        rol = "Entrenador"
     )
 }
 fun Jugador.toBinDto(): PersonasBinDto {
@@ -275,7 +287,8 @@ fun Jugador.toBinDto(): PersonasBinDto {
         goles = this.goles,
         partidos = this.partidos,
         minutosJugados = this.minutosJugados,
-        especialidad = null
+        especialidad = null,
+        rol = "Jugador"
     )
 }
 fun PersonasBinDto.toEntrenador(): Entrenador {
@@ -329,12 +342,20 @@ fun PersonasBinDto.toJugador(): Jugador {
     )
 }
 
-
-
-
-
-
-
-
-
-
+fun PersonasEntity.toModel(): Personas{
+    return Personas(
+        id,
+        nombre,
+        apellido,
+        fechaNacimiento,
+        fechaIncorporacion,
+        salario,
+        pais,
+        createdAt,
+        updatedAt
+    )
+}
+@JvmName("entityToModelList")
+fun List<PersonasEntity>.toModel(): List<Personas> {
+    return this.map { it.toModel() }
+}

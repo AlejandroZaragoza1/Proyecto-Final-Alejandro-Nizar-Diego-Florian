@@ -1,8 +1,10 @@
 package org.example.proyectojugadores.Equipo.models
 
+import dev.alejandrozaragoza.proyectofinal.Equipo.dao.PersonasEntity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class Jugador(
     id: Long,
@@ -12,8 +14,8 @@ class Jugador(
     fechaIncorporacion: LocalDate,
     salario: Double,
     pais: String,
-    val posicion: Posicion?,
-    val dorsal: Int?,
+    var posicion: Posicion?,
+    var dorsal: Int?,
     var altura: Double?,
     var peso: Double?,
     var goles: Int?,
@@ -25,4 +27,5 @@ class Jugador(
         @SerialName("posicion")
         DEFENSA, CENTROCAMPISTA, DELANTERO, PORTERO, NINGUNO
     }
+
 }

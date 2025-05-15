@@ -10,6 +10,7 @@ data class PersonasBinDto(
     val fechaIncorporacion : String,
     val salario : Double,
     val pais: String,
+    val rol: String,
     val posicion: String,
     val dorsal: Int? = null,
     val altura: Double? = null,

@@ -35,10 +35,10 @@ class PersonasStorageXml: PersonasStorage {
         val personasXmlDto: PlantillaDtoXml = xml.decodeFromString(PlantillaDtoXml.serializer(), xmlToString)
         val personasList = personasXmlDto.equipo
         return personasList.map {
-            when(it.tipo) {
+            when(it.rol) {
                 "Entrenador" -> it.toEntrenador()
                 "Jugadore" -> it.toJugador()
-                else -> throw IllegalArgumentException("Tipo de persona no coincide -> ${it.tipo}")
+                else -> throw IllegalArgumentException("Tipo de persona no coincide -> ${it.rol}")
             }
         }
     }
