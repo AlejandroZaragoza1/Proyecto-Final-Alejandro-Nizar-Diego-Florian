@@ -1,10 +1,9 @@
-package dev.alejandrozaragoza.proyectofinal.Equipo.Repository
+package dev.alejandrozaragoza.proyectofinal.Equipo.repository
 
 import dev.alejandrozaragoza.proyectofinal.Equipo.dao.PersonasDao
 import dev.alejandrozaragoza.proyectofinal.Equipo.mapers.toModel
 import org.example.proyectojugadores.Equipo.models.Personas
 import org.lighthousegames.logging.logging
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 private val logger = logging()
@@ -27,11 +26,11 @@ abstract class PersonasRepositoryImpl(
         return if (persona.isNewPersona){
             create(persona)
         } else {
-            update(persona)
+            update(persona, personas)
         }
     }
 
-    private fun update(persona: Personas): Personas {
+    fun update(persona: Long, personas: Personas): Personas {
         logger.debug { "Actualizar: $persona" }
         val timestamp = LocalDateTime.now()
         val toUpdate = persona.copy(updatedAt = timestamp)

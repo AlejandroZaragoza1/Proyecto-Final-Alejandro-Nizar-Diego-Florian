@@ -1,4 +1,4 @@
-package dev.alejandrozaragoza.proyectofinal.Equipo.Repository
+package dev.alejandrozaragoza.proyectofinal.Equipo.repository
 
 import org.example.proyectojugadores.Equipo.models.Personas
 
