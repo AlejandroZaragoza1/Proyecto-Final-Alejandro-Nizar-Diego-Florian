@@ -13,8 +13,10 @@ class Entrenador(
     fechaIncorporacion: LocalDate,
     salario: Double,
     pais: String,
+    createdAt: LocalDateTime = LocalDateTime.now(),
+    updatedAt: LocalDateTime = LocalDateTime.now(),
     val especialidad: Especialidad?
-): Personas(id, nombre, apellido, fechaNacimiento, fechaIncorporacion, salario, pais) {
+): Personas(id, nombre, apellido, fechaNacimiento, fechaIncorporacion, salario, pais, createdAt, updatedAt) {
 
     enum class Especialidad {
         @SerialName("especialidad")
@@ -23,5 +25,19 @@ class Entrenador(
 
     override fun toString(): String {
         return "Entrenador(id=$id, nombre='$nombre', apellido='$apellido', fechaNacimiento=$fechaNacimiento, fechaIncorporacion=$fechaIncorporacion, salario=$salario, paisOrigen='$pais', especialedad=$especialidad)"
+    }
+
+    override fun copy(
+        id: Long,
+        nombre: String,
+        apellido: String,
+        fechaNacimiento: LocalDate,
+        fechaIncorporacion: LocalDate,
+        salario: Double,
+        pais: String,
+        createdAt: LocalDateTime,
+        updatedAt: LocalDateTime
+    ): Personas {
+        return this.copy()
     }
 }

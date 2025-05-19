@@ -14,6 +14,8 @@ class Jugador(
     fechaIncorporacion: LocalDate,
     salario: Double,
     pais: String,
+    createdAt: LocalDateTime = LocalDateTime.now(),
+    updatedAt: LocalDateTime = LocalDateTime.now(),
     var posicion: Posicion?,
     var dorsal: Int?,
     var altura: Double?,
@@ -21,11 +23,24 @@ class Jugador(
     var goles: Int?,
     var partidos: Int?,
     var minutosJugados: Double?
-): Personas(id, nombre, apellido, fechaNacimiento, fechaIncorporacion, salario, pais) {
+): Personas(id, nombre, apellido, fechaNacimiento, fechaIncorporacion, salario, pais, createdAt, updatedAt) {
     @Serializable
     enum class Posicion {
         @SerialName("posicion")
         DEFENSA, CENTROCAMPISTA, DELANTERO, PORTERO, NINGUNO
     }
 
+    override fun copy(
+        id: Long,
+        nombre: String,
+        apellido: String,
+        fechaNacimiento: LocalDate,
+        fechaIncorporacion: LocalDate,
+        salario: Double,
+        pais: String,
+        createdAt: LocalDateTime,
+        updatedAt: LocalDateTime
+    ): Personas {
+        return this.copy()
+    }
 }

@@ -342,20 +342,83 @@ fun PersonasBinDto.toJugador(): Jugador {
     )
 }
 
-fun PersonasEntity.toModel(): Personas{
-    return Personas(
-        id,
-        nombre,
-        apellido,
-        fechaNacimiento,
-        fechaIncorporacion,
-        salario,
-        pais,
-        createdAt,
-        updatedAt
-    )
+fun Personas.toEntity(): PersonasEntity {
+    return when (this) {
+        is Jugador -> PersonasEntity(
+            id = this.id,
+            nombre = this.nombre,
+            apellido = this.apellido,
+            fechaNacimiento = this.fechaNacimiento,
+            fechaIncorporacion = this.fechaIncorporacion,
+            salario = this.salario,
+            pais = this.pais,
+            createdAt = this.createdAt,
+            updatedAt = this.updatedAt,
+            rol = "jugador",
+            posicion = this.posicion?.name,
+            dorsal = this.dorsal,
+            altura = this.altura,
+            peso = this.peso,
+            goles = this.goles,
+            partidos = this.partidos,
+            minutosJugados = this.minutosJugados,
+            especialidad = null
+        )
+        is Entrenador -> PersonasEntity(
+            id = this.id,
+            nombre = this.nombre,
+            apellido = this.apellido,
+            fechaNacimiento = this.fechaNacimiento,
+            fechaIncorporacion = this.fechaIncorporacion,
+            salario = this.salario,
+            pais = this.pais,
+            createdAt = this.createdAt,
+            updatedAt = this.updatedAt,
+            rol = "entrenador",
+            posicion = null,
+            dorsal = null,
+            altura = null,
+            peso = null,
+            goles = null,
+            partidos = null,
+            minutosJugados = null,
+            especialidad = this.especialidad?.name
+        )
+        else -> throw IllegalArgumentException("Clase no soportada")
+    }
 }
-@JvmName("entityToModelList")
-fun List<PersonasEntity>.toModel(): List<Personas> {
-    return this.map { it.toModel() }
+
+
+fun PersonasEntity.toModel(): Personas {
+    return when (rol.lowercase()) {
+        "jugador" -> Jugador(
+            id = id,
+            nombre = nombre,
+            apellido = apellido,
+            fechaNacimiento = fechaNacimiento,
+            fechaIncorporacion = fechaIncorporacion,
+            salario = salario,
+            pais = pais,
+            posicion = posicion?.let { Jugador.Posicion.valueOf(it) },
+            dorsal = dorsal,
+            altura = altura,
+            peso = peso,
+            goles = goles,
+            partidos = partidos,
+            minutosJugados = minutosJugados
+        )
+        "entrenador" -> Entrenador(
+            id = id,
+            nombre = nombre,
+            apellido = apellido,
+            fechaNacimiento = fechaNacimiento,
+            fechaIncorporacion = fechaIncorporacion,
+            salario = salario,
+            pais = pais,
+            especialidad = especialidad?.let { Entrenador.Especialidad.valueOf(it) }
+        )
+        else -> throw IllegalArgumentException("Tipo de persona desconocido: $rol")
+
+    }
 }
+

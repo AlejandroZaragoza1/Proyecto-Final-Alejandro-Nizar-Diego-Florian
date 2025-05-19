@@ -12,6 +12,7 @@ data class PersonasEntity(
     val salario: Double,
     val pais: String,
     val rol: String,
+    val altura: Double?,
     val posicion: String?,
     val dorsal: Int?,
     val peso: Double?,
